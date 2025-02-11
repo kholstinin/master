@@ -11,7 +11,9 @@
   "scripts": {
     "eslint": "yarn workspaces foreach --all -pt run eslint",
     "stylelint": "yarn workspaces foreach --all -pt run stylelint",
-    "prettier": "yarn workspaces foreach --all -pt run prettier"
+    "prettier": "yarn workspaces foreach --all -pt run prettier",
+    "jest": "yarn workspace backend run jest",
+    "playwright": "yarn workspace todolist run playwright"
   },
   "devDependencies": {
     "eslint": "^9.20.0",
