@@ -9,6 +9,7 @@
     "packages/*"
   ],
   "scripts": {
+    "build": "yarn workspace todolist run build",
     "eslint": "yarn workspaces foreach --all -pt run eslint",
     "stylelint": "yarn workspaces foreach --all -pt run stylelint",
     "prettier": "yarn workspaces foreach --all -pt run prettier",
