@@ -154,3 +154,32 @@ jobs:
         run: docker build -t cr.yandex/$CR_REGISTRY/nginx:$IMAGE_TAG -f Dockerfile.nginx .
       - name: Publish nginx
         run: docker push cr.yandex/$CR_REGISTRY/nginx:$IMAGE_TAG
+
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    needs: [upload, docker]
+    steps:
+      - uses: actions/checkout@v4
+      - name: generate .env
+        run: |
+          echo "CR_REGISTRY=${CR_REGISTRY}" > .env
+          echo "IMAGE_TAG=${IMAGE_TAG}" >> .env
+          echo "HTML_PATH=${S3_ENDPOINT}/${{secrets.AWS_BUCKET}}/${S3_PATH}/${GITHUB_SHA::8}/index.html" >> .env
+      - name: Deploy to Staging server
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: "-rlgoDzvc -i"
+          SOURCE: "docker-compose.yml .env"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
+          SCRIPT_BEFORE: |
+            echo ${{secrets.DOCKER_OAUTH_TOKEN}}|docker login \
+            --username oauth \
+            --password-stdin \
+            cr.yandex
+          SCRIPT_AFTER: |
+            cd /tmp/deploy
+            sudo docker compose up -d

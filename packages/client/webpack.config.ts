@@ -40,7 +40,7 @@ const config: webpack.Configuration = {
     }),
     !IS_DEV && new MiniCssExtractPlugin(),
     new webpack.DefinePlugin({
-      BASE_API_URL: IS_DEV ? '"http://localhost:4000"' : process.env.API_URL
+      BASE_API_URL: IS_DEV ? '"http://localhost:4000"' : JSON.stringify(process.env.API_URL)
     })
   ].filter(Boolean)
 };
