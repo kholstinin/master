@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  nginx:
+    container_name: nginx
+    environment:
+      HTML_PATH: $HTML_PATH
+    build:
+      dockerfile: Dockerfile.nginx
+    networks:
+      nginx_net:
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+    ports:
+      - 443:443
+      - 80:80
+  backend-node:
+    container_name: backend
+    networks:
+      nginx_net:
+    build:
+      dockerfile: Dockerfile.backend
+
+networks:
+  nginx_net:
+    name: nginx_net

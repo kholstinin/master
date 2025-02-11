@@ -1,0 +1,13 @@
+FROM node:22
+
+WORKDIR /app
+COPY packages/backend ./packages/backend
+COPY packages/common ./packages/common
+COPY package.json yarn.lock .yarnrc.yml ./
+COPY .yarn/releases ./.yarn/releases
+RUN yarn
+
+COPY backend-entrypoint.sh ./
+RUN chmod +x ./backend-entrypoint.sh
+
+ENTRYPOINT ["./backend-entrypoint.sh"]
