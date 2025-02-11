@@ -3,7 +3,8 @@ import type { FastifyInstance } from "fastify";
 
 import type { TodoItem } from "todolist-typings";
 
-const dbPath = process.env.NODE_ENV === "development" ? "db.json" : "/tmp/data/db.json";
+const dbPath =
+  process.env.NODE_ENV === "development" ? "db.json" : "/tmp/data/db.json";
 const db = await JSONFilePreset<{ todos: TodoItem[] }>(dbPath, { todos: [] });
 
 export function initRoutes(fastify: FastifyInstance) {

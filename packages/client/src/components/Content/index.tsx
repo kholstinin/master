@@ -25,7 +25,7 @@ export function Content() {
   const onCheck = (item: TodoItem) => {
     const { id } = item;
 
-    fetch(BASE_API_URL + "/api/v1/check/${id}", {
+    fetch(BASE_API_URL + `/api/v1/check/${id}`, {
       method: "get"
     }).then(() => {
       const newItems = [...items],
