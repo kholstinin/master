@@ -1,0 +1,6 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - run: yarn eslint
+    - run: yarn prettier
+    - run: yarn stylelint

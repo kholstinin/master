@@ -1,0 +1,27 @@
+{
+  "name": "infra-master",
+  "version": "1.0.0",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "eslint": "yarn workspaces foreach --all -pt run eslint",
+    "stylelint": "yarn workspaces foreach --all -pt run stylelint",
+    "prettier": "yarn workspaces foreach --all -pt run prettier"
+  },
+  "devDependencies": {
+    "eslint": "^9.20.0",
+    "jiti": "^2.4.2",
+    "lefthook": "^1.10.10",
+    "prettier": "^3.5.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.24.0"
+  },
+  "packageManager": "yarn@4.6.0"
+}

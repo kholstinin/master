@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "module": "Preserve",
+    "moduleResolution": "bundler"
+  }
+}
