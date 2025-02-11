@@ -16,6 +16,8 @@ services:
   backend-node:
     container_name: backend
     image: cr.yandex/$CR_REGISTRY/backend:$IMAGE_TAG
+    volumes:
+      - /tmp/data:/tmp/data
     networks:
       nginx_net:
     build:
