@@ -15,7 +15,7 @@ export function Content() {
   const [form] = Form.useForm();
 
   useEffect(() => {
-    fetch(BASE_API_URL + '/api/v1/todos')
+    fetch(BASE_API_URL + "/api/v1/todos")
       .then((resp) => resp.json())
       .then((data) => {
         setItems(data);
@@ -25,7 +25,7 @@ export function Content() {
   const onCheck = (item: TodoItem) => {
     const { id } = item;
 
-    fetch(BASE_API_URL + '/api/v1/check/${id}', {
+    fetch(BASE_API_URL + "/api/v1/check/${id}", {
       method: "get"
     }).then(() => {
       const newItems = [...items],
@@ -43,7 +43,7 @@ export function Content() {
 
     const dataItem = { data: text, checked: false, id: uuidv4() };
 
-    fetch(BASE_API_URL + '/api/v1/add', {
+    fetch(BASE_API_URL + "/api/v1/add", {
       method: "post",
       body: JSON.stringify(dataItem)
     }).then(() => {
@@ -53,7 +53,7 @@ export function Content() {
   };
 
   const onDelete = (item: TodoItem) => {
-    fetch(BASE_API_URL + '/api/v1/delete', {
+    fetch(BASE_API_URL + "/api/v1/delete", {
       method: "post",
       body: JSON.stringify(item)
     });
