@@ -15,7 +15,7 @@ export function Content() {
   const [form] = Form.useForm();
 
   useEffect(() => {
-    fetch('BASE_API_URL' + '/api/v1/todos')
+    fetch(BASE_API_URL + '/api/v1/todos')
       .then((resp) => resp.json())
       .then((data) => {
         setItems(data);
